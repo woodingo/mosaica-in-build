@@ -45,7 +45,7 @@ const Header = ({
   } else {
     headerButton = (
       <div className={styles.button} onClick={handleSwitchSider}>
-        <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
+        <Icon type={collapsed ? 'double-right' : 'double-left'} />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  // "extends": "airbnb",
+  "extends": "airbnb",
   "rules": {
     "semi": "off",
     "generator-star-spacing": [0],
@@ -33,7 +33,8 @@
     "no-useless-constructor": "off",
     "no-underscore-dangle": "off",
     "indent": ["warn", 2],
-    "comma-dangle": ["error", "never"]
+    "comma-dangle": ["error", "never"],
+    "linebreak-style": ["error", "windows"]
   },
   "parserOptions": {
     "ecmaFeatures": {

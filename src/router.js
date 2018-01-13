@@ -43,6 +43,11 @@ const Routers = ({ history, app }) => {
       path: '/users',
       models: () => [import('./models/user')],
       component: () => import('./routes/Contents/users/users')
+    },
+    {
+      path: '/mass-medias',
+      models: () => [import('./models/mass-medias')],
+      component: () => import('./routes/Contents/mass-medias/mass-medias')
     }
   ]
 

@@ -14,6 +14,9 @@ export default {
     addButton: 'Добавить пользователя',
     delButton: 'Удалить пользователя'
   },
+  MassMediaToolbar: {
+    addButton: 'Добавить издание'
+  },
   LoginForm: {
     rememberMeText: 'Запомнить Email',
     forgetPasswdText: 'Забыли пароль?',
