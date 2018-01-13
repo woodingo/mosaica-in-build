@@ -2,8 +2,8 @@
   "name": "mosaica-in-build",
   "version": "1.0.0",
   "description": "Page Building System",
-  "repository": "https://github.com/Mesamo/dva-admin.git",
-  "author": "mesamo <mesamo@foxmail.com>",
+  "repository": "https://github.com/woodingo/mosaica-in-build",
+  "author": "Woody Just <woody.just@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "roadhog server",
