@@ -1,0 +1,26 @@
+{
+  "entry": {
+    "index": "./src/index.js",
+    "common": "./src/vendor.js"
+  },
+  "multipage": true,
+  "hash": true,
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    }
+  },
+  "theme": {
+      "@icon-url": "'/assets/iconfont/iconfont'"
+  }
+}
