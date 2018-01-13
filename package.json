@@ -1,7 +1,7 @@
 {
-  "name": "dva-admin",
+  "name": "mosaica-in-build",
   "version": "1.0.0",
-  "description": "dva admin",
+  "description": "Page Building System",
   "repository": "https://github.com/Mesamo/dva-admin.git",
   "author": "mesamo <mesamo@foxmail.com>",
   "license": "MIT",
