@@ -61,8 +61,7 @@ const Sider = ({
     <Layout.Sider className={darkTheme ? '' : styles.white} {...props}>
       <QueueAnim delay={200} type="top" onClick={handleToIndex}>
         <div className={styles.logo} key="1">
-          <img alt="logo" src="/favicon.ico" className={styles.dva} />
-          {collapsed ? '' : <span className={styles.title} style={textColor}>Dva Admin</span>}
+          {collapsed ? '' : <span className={styles.title} style={textColor}>Mosaica InBuild</span>}
         </div>
       </QueueAnim>
       <QueueAnim delay={400} type="left">
