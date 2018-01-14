@@ -56,7 +56,7 @@ const mapDispatchToProps = dispatch => ({
   onHideModal: () => dispatch({ type: 'massMedias/hideModal' }),
   onCreate: value => dispatch({
     type: 'massMedias/addMedia',
-    payload: { user: value },
+    payload: { media: value },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),

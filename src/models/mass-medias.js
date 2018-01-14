@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
-import { addMedia, delMedia, updateMedia } from '../services/user.service'
+import { addMedia, delMedia, updateMedia } from '../services/mass-medias.service'
 import firebaseApp from '../utils/firebase'
 
 export default {

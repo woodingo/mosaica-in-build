@@ -21,6 +21,9 @@ export default {
     addTitle: 'Добавить издание',
     editTitle: 'Редактировать издание'
   },
+  MediaForm: {
+    name: 'Название'
+  },
   LoginForm: {
     rememberMeText: 'Запомнить Email',
     forgetPasswdText: 'Забыли пароль?',

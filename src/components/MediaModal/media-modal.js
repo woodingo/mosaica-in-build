@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal } from 'antd'
 
+import MediaForm from '../MediaForm';
 
 const MediaModal = ({
   mode,
   modalVisible,
+  initMedia,
   onCreate,
   onEdit,
   onHideModal,
@@ -17,8 +19,8 @@ const MediaModal = ({
     const props = {}
     switch (m) {
     case 'add':
-      props.title = messages.addTitle
-      props.action = onCreate
+      props.title = messages.addTitle;
+      props.action = onCreate;
       break
     case 'edit':
       props.title = messages.editTitle
@@ -55,7 +57,7 @@ const MediaModal = ({
       okText={messages.ok}
       cancelText={messages.cancel}
     >
-      <div></div>
+      <MediaForm form={form} initMedia={initMedia} />
     </Modal>
   )
 
