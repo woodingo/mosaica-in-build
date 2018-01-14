@@ -9,32 +9,19 @@ const MediaList = ({
   loading,
   messages
 }) => {
-  const onClick = ({ item, key }) => actionFunc[key](item.props.recordKey)
-
-  const getMenus = record => (
-    <Menu onClick={onClick}>
-      {actionMenu.map(menu => (
-        <Menu.Item key={menu.key} recordKey={record.key}>
-          <span>{messages[menu.name] || menu.name}</span>
-        </Menu.Item>
-      ))}
-    </Menu>
-  )
-
-  const actionDropdown = record => (
-    <Dropdown overlay={getMenus(record)} >
-      <a className="ant-dropdown-link">
-        <Icon type="down" style={{ fontSize: 16 }} />
+  const cardActions = record => (
+    actionMenu.map(action => (
+      <a key={action.key} onClick={() => actionFunc[action.key](record.key)}>
+        {action.key}
       </a>
-    </Dropdown>
+    ))
   )
 
   return (
     <div>
       {data.map(record => (
-        <Card key={record.key}>
-          {record.name}
-          {actionDropdown(record)}
+        <Card title={record.name} extra={cardActions(record)} key={record.key}>
+          Some content goes here...
         </Card>
       ))}
     </div>
