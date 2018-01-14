@@ -17,6 +17,10 @@ export default {
   MassMediaToolbar: {
     addButton: 'Добавить издание'
   },
+  MassMedia: {
+    addTitle: 'Добавить издание',
+    editTitle: 'Редактировать издание'
+  },
   LoginForm: {
     rememberMeText: 'Запомнить Email',
     forgetPasswdText: 'Забыли пароль?',

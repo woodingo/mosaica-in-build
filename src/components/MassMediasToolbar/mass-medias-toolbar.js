@@ -1,21 +1,48 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Form, Button } from 'antd'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Form, Button } from 'antd';
 
-import styles from './mass-medias-toolbar.less'
+import MediaModal from '../MediaModal';
+
+import styles from './mass-medias-toolbar.less';
 
 const MassMediasToolbar = ({
+  mode,
+  initMedia,
+  modalVisible,
+  onShowAddModal,
+  onHideModal,
+  onCreate,
+  onEdit,
+  form,
+  loading,
   messages
 }) => {
+  const handleShowAddModal = () => {
+    onShowAddModal()
+  }
+
+  const modelProps = {
+    mode,
+    initMedia,
+    modalVisible,
+    onCreate,
+    onEdit,
+    onHideModal,
+    form,
+    loading
+  }
   return (
     <div>
       <Button
         className={styles.button}
         type="primary"
         icon="plus-circle-o"
+        onClick={handleShowAddModal}
       >
         {messages.addButton}
       </Button>
+      <MediaModal {...modelProps} />
     </div>
   )
 }
