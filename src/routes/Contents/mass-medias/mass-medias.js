@@ -72,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
   onSelectedChange: keys => dispatch({ type: 'massMedias/onSelectedChange', selectedKeys: keys }),
   onShowAddModal: () => dispatch({ type: 'massMedias/showAddModal' }),
   onShowEditModal: (key) => {
-    dispatch({ type: 'massMedias/getSelectedUser', payload: { key } })
+    dispatch({ type: 'massMedias/getSelectedMedia', payload: { key } })
     dispatch({ type: 'massMedias/showEditModal' })
   },
   onHideModal: () => dispatch({ type: 'massMedias/hideModal' }),
@@ -89,8 +89,8 @@ const mapDispatchToProps = dispatch => ({
     onError: msg => message.error(msg)
   }),
   onEdit: value => dispatch({
-    type: 'massMedia/editMedia',
-    payload: { user: value },
+    type: 'massMedias/editMedia',
+    payload: { media: value },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   })

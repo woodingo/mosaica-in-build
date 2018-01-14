@@ -91,7 +91,7 @@ export default {
       const { key } = payload
       const medias = yield select(state => state.massMedias.list)
       const media = medias.find(m => m.key === key)
-      yield put({ type: 'saveSelectedMedias', media })
+      yield put({ type: 'saveSelectedMedia', media })
     },
     *convert({ payload }, { put }) {
       const list = []
