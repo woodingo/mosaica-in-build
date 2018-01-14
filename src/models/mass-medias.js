@@ -91,14 +91,14 @@ export default {
       const { key } = payload
       const medias = yield select(state => state.massMedias.list)
       const media = medias.find(m => m.key === key)
-      yield put({ type: 'saveSelectedUser', media })
+      yield put({ type: 'saveSelectedMedias', media })
     },
     *convert({ payload }, { put }) {
       const list = []
       payload.mediaObj.forEach((snapshort) => {
         list.push({ key: snapshort.key, ...snapshort.val() })
       })
-      yield put({ type: 'saveUsers', list })
+      yield put({ type: 'saveMedias', list })
     }
   },
   subscriptions: {

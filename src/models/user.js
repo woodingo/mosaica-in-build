@@ -98,7 +98,7 @@ export default {
       const users = []
       payload.usersObj.forEach((snapshort) => {
         users.push({ key: snapshort.key, ...snapshort.val() })
-      })
+      });
       yield put({ type: 'saveUsers', users })
     }
   },

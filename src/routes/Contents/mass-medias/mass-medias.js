@@ -4,6 +4,7 @@ import { connect } from 'dva';
 import { message } from 'antd';
 
 import MassMediasToolbar from '../../../components/MassMediasToolbar';
+import MediaList from '../../../components/MediaList';
 
 import styles from './mass-medias.less';
 
@@ -27,10 +28,31 @@ class MassMedias extends React.Component {
     }
   }
 
+  get massMediaListProps() {
+    return {
+      data: this.props.massMedias.list,
+      actionFunc: {
+        delete: this.props.onDelete,
+        edit: this.props.onShowEditModal
+      },
+      actionMenu: [
+        {
+          key: 'delete',
+          name: 'delete'
+        },
+        {
+          key: 'edit',
+          name: 'edit'
+        }
+      ]
+    }
+  }
+
   render() {
     return (
       <div className={styles.normal}>
         <MassMediasToolbar {...this.massMediasToolbarProps} />
+        <MediaList {...this.massMediaListProps} />
       </div>
     )
   }
