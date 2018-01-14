@@ -33,7 +33,7 @@ const MassMediasToolbar = ({
     loading
   }
   return (
-    <div>
+    <div className={styles.normal}>
       <Button
         className={styles.button}
         type="primary"

@@ -36,6 +36,17 @@ const MediaForm = ({
           initialValue: initMedia ? initMedia.name : ''
         })(<Input />)}
       </FormItem>
+      <FormItem hasFeedback label={messages.description} {...formItemLayout}>
+        {getFieldDecorator('description', {
+          rules: [
+            {
+              required: true,
+              message: messages.fieldRequired
+            }
+          ],
+          initialValue: initMedia ? initMedia.description : ''
+        })(<Input.TextArea rows={3} />)}
+      </FormItem>
     </Form>
   )
 }

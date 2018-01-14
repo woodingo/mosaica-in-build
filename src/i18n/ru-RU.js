@@ -17,12 +17,17 @@ export default {
   MassMediaToolbar: {
     addButton: 'Добавить издание'
   },
+  MediaList: {
+    edit: 'Редактировать',
+    delete: 'Удалить'
+  },
   MassMedia: {
     addTitle: 'Добавить издание',
     editTitle: 'Редактировать издание'
   },
   MediaForm: {
-    name: 'Название'
+    name: 'Название',
+    description: 'Описание'
   },
   LoginForm: {
     rememberMeText: 'Запомнить Email',

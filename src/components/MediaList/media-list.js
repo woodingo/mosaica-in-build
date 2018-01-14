@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, Menu, Icon, Dropdown } from 'antd'
+import { Card, Menu, Icon, Dropdown } from 'antd';
+
+import MediaCard from '../MediaCard';
 
 const MediaList = ({
   actionFunc,
@@ -11,8 +13,12 @@ const MediaList = ({
 }) => {
   const cardActions = record => (
     actionMenu.map(action => (
-      <a key={action.key} onClick={() => actionFunc[action.key](record.key)}>
-        {action.key}
+      <a
+        key={action.key}
+        onClick={() => actionFunc[action.key](record.key)}
+        style={{ marginLeft: 8 }}
+      >
+        {messages[action.key]}
       </a>
     ))
   )
@@ -20,9 +26,7 @@ const MediaList = ({
   return (
     <div>
       {data.map(record => (
-        <Card title={record.name} extra={cardActions(record)} key={record.key}>
-          Some content goes here...
-        </Card>
+        <MediaCard item={record} actions={cardActions(record)} key={record.key} />
       ))}
     </div>
   )
