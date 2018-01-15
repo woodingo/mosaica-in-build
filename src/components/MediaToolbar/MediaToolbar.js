@@ -4,9 +4,9 @@ import { Form, Button } from 'antd';
 
 import MediaModal from '../MediaModal';
 
-import styles from './mass-medias-toolbar.less';
+import styles from './MediaToolbar.less';
 
-const MassMediasToolbar = ({
+const MediaToolbar = ({
   mode,
   initMedia,
   modalVisible,
@@ -47,11 +47,11 @@ const MassMediasToolbar = ({
   )
 }
 
-MassMediasToolbar.propTypes = {
+MediaToolbar.propTypes = {
   messages: PropTypes.object
 }
 
-MassMediasToolbar.defaultProps = {
+MediaToolbar.defaultProps = {
   messages: {
     addButton: 'Add User',
     ok: 'OK',
@@ -59,4 +59,4 @@ MassMediasToolbar.defaultProps = {
   }
 }
 
-export default Form.create()(MassMediasToolbar)
+export default Form.create()(MediaToolbar)

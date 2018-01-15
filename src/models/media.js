@@ -1,9 +1,9 @@
 import pathToRegexp from 'path-to-regexp'
-import { addMedia, delMedia, updateMedia } from '../services/mass-medias.service'
+import { addMedia, delMedia, updateMedia } from '../services/media.service'
 import firebaseApp from '../utils/firebase'
 
 export default {
-  namespace: 'massMedias',
+  namespace: 'media',
   state: {
     list: [],
     mode: '',
@@ -66,7 +66,7 @@ export default {
     },
     *editMedia({ payload, onSuccess, onError }, { call, put, select }) {
       try {
-        const key = yield select(state => state.massMedias.selectedMedia.key)
+        const key = yield select(state => state.media.selectedMedia.key)
         const media = {
           ...payload.media,
           key
@@ -89,7 +89,7 @@ export default {
     },
     *getSelectedMedia({ payload }, { put, select }) {
       const { key } = payload
-      const medias = yield select(state => state.massMedias.list)
+      const medias = yield select(state => state.media.list)
       const media = medias.find(m => m.key === key)
       yield put({ type: 'saveSelectedMedia', media })
     },
@@ -105,9 +105,9 @@ export default {
     onMediaChange({ history, dispatch }) {
       let mediaRef
       history.listen(({ pathname }) => {
-        const match = pathToRegexp('/mass-medias').exec(pathname)
+        const match = pathToRegexp('/media').exec(pathname)
         if (match && !mediaRef) {
-          mediaRef = firebaseApp.database().ref('mass-medias')
+          mediaRef = firebaseApp.database().ref('media')
           mediaRef.on('value', (snapshort) => {
             dispatch({ type: 'convert', payload: { mediaObj: snapshort } })
           })

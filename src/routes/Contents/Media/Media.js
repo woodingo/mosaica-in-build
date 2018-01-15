@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { message } from 'antd';
 
-import MassMediasToolbar from '../../../components/MassMediasToolbar';
+import MediaToolbar from '../../../components/MediaToolbar';
 import MediaList from '../../../components/MediaList';
 
-import styles from './mass-medias.less';
+import styles from './Media.less';
 
-class MassMedias extends React.Component {
+class Media extends React.Component {
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage
     }
   }
 
-  get massMediasToolbarProps() {
+  get mediaToolbarProps() {
     return {
-      mode: this.props.massMedias.mode,
-      initMedia: this.props.massMedias.selectedMedia,
-      modalVisible: this.props.massMedias.modalVisible,
+      mode: this.props.media.mode,
+      initMedia: this.props.media.selectedMedia,
+      modalVisible: this.props.media.modalVisible,
       loading: this.props.loading,
       onShowAddModal: this.props.onShowAddModal,
       onHideModal: this.props.onHideModal,
@@ -28,9 +28,9 @@ class MassMedias extends React.Component {
     }
   }
 
-  get massMediaListProps() {
+  get mediaListProps() {
     return {
-      data: this.props.massMedias.list,
+      data: this.props.media.list,
       actionFunc: {
         delete: this.props.onDelete,
         edit: this.props.onShowEditModal
@@ -51,49 +51,49 @@ class MassMedias extends React.Component {
   render() {
     return (
       <div className={styles.normal}>
-        <MassMediasToolbar {...this.massMediasToolbarProps} />
-        <MediaList {...this.massMediaListProps} />
+        <MediaToolbar {...this.mediaToolbarProps} />
+        <MediaList {...this.mediaListProps} />
       </div>
     )
   }
 }
 
-MassMedias.childContextTypes = {
+Media.childContextTypes = {
   currentLanguage: PropTypes.string
 }
 
 const mapStateToProps = state => ({
   currentLanguage: state.app.currentLanguage,
-  massMedias: state.massMedias,
-  loading: state.loading.models.massMedias
+  media: state.media,
+  loading: state.loading.models.media
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSelectedChange: keys => dispatch({ type: 'massMedias/onSelectedChange', selectedKeys: keys }),
-  onShowAddModal: () => dispatch({ type: 'massMedias/showAddModal' }),
+  onSelectedChange: keys => dispatch({ type: 'media/onSelectedChange', selectedKeys: keys }),
+  onShowAddModal: () => dispatch({ type: 'media/showAddModal' }),
   onShowEditModal: (key) => {
-    dispatch({ type: 'massMedias/getSelectedMedia', payload: { key } })
-    dispatch({ type: 'massMedias/showEditModal' })
+    dispatch({ type: 'media/getSelectedMedia', payload: { key } })
+    dispatch({ type: 'media/showEditModal' })
   },
-  onHideModal: () => dispatch({ type: 'massMedias/hideModal' }),
+  onHideModal: () => dispatch({ type: 'media/hideModal' }),
   onCreate: value => dispatch({
-    type: 'massMedias/addMedia',
+    type: 'media/addMedia',
     payload: { media: value },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),
   onDelete: key => dispatch({
-    type: 'massMedias/delMedia',
+    type: 'media/delMedia',
     payload: { key },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),
   onEdit: value => dispatch({
-    type: 'massMedias/editMedia',
+    type: 'media/editMedia',
     payload: { media: value },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MassMedias)
+export default connect(mapStateToProps, mapDispatchToProps)(Media)

@@ -18,7 +18,7 @@ const menus = [
     icon: 'user'
   },
   {
-    key: 'mass-medias',
+    key: 'media',
     name: {
       'en-US': 'Print Media',
       'ru-RU': 'Издания'

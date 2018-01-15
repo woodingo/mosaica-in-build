@@ -14,18 +14,12 @@ export default {
     addButton: 'Добавить пользователя',
     delButton: 'Удалить пользователя'
   },
-  MassMediaToolbar: {
-    addButton: 'Добавить издание'
-  },
-  MediaList: {
+  Media: {
+    addButton: 'Добавить издание',
     edit: 'Редактировать',
-    delete: 'Удалить'
-  },
-  MassMedia: {
+    delete: 'Удалить',
     addTitle: 'Добавить издание',
-    editTitle: 'Редактировать издание'
-  },
-  MediaForm: {
+    editTitle: 'Редактировать издание',
     name: 'Название',
     description: 'Описание'
   },
