@@ -1,4 +1,4 @@
-import MediaList from './media-list'
+import MediaList from './MediaList'
 
 import translate from '../../i18n/translate'
 

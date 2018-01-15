@@ -1,4 +1,4 @@
-import MediaForm from './media-form'
+import MediaForm from './MediaForm'
 
 import translate from '../../i18n/translate'
 

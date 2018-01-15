@@ -1,4 +1,4 @@
-import MediaModal from './media-modal'
+import MediaModal from './MediaModal'
 
 import translate from '../../i18n/translate'
 
