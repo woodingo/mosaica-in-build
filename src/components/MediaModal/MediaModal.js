@@ -59,9 +59,7 @@ const MediaModal = ({
       cancelText={messages.cancel}
     >
       <MediaForm form={form} initMedia={initMedia} />
-      <Upload onChange={e => onLogoUpload(e.file.originFileObj)}>
-        Выбрать файл
-      </Upload>
+      <input type="file" onChange={e => onLogoUpload(e.target.files[0])} />
     </Modal>
   )
 
