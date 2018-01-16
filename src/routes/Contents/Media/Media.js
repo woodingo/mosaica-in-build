@@ -24,7 +24,8 @@ class Media extends React.Component {
       onShowAddModal: this.props.onShowAddModal,
       onHideModal: this.props.onHideModal,
       onCreate: this.props.onCreate,
-      onEdit: this.props.onEdit
+      onEdit: this.props.onEdit,
+      onLogoUpload: this.props.onLogoUpload
     }
   }
 
@@ -91,6 +92,12 @@ const mapDispatchToProps = dispatch => ({
   onEdit: value => dispatch({
     type: 'media/editMedia',
     payload: { media: value },
+    onSuccess: msg => message.success(msg),
+    onError: msg => message.error(msg)
+  }),
+  onLogoUpload: logo => dispatch({
+    type: 'media/uploadLogo',
+    payload: { logo },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   })

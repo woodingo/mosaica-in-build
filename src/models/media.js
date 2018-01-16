@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
-import { addMedia, delMedia, updateMedia } from '../services/media.service'
+import { addMedia, delMedia, updateMedia, createUploadLogoChannel } from '../services/media.service'
 import firebaseApp from '../utils/firebase'
 
 export default {
@@ -53,7 +53,9 @@ export default {
       }
     }
   },
+
   effects: {
+
     *addMedia({ payload, onSuccess, onError }, { call, put }) {
       const { media } = payload
       try {
@@ -64,6 +66,29 @@ export default {
         onError(error.message)
       }
     },
+
+    *uploadLogo({ payload, onSuccess, onError }, { call, put, take }) {
+      const { logo } = payload;
+
+      try {
+        const channel = yield call(createUploadLogoChannel, logo);
+        while (true) {
+          const { progress = 0, error, success } = yield take(channel);
+          if (error) {
+            onError(error.message)
+            return;
+          }
+          if (success) {
+            onSuccess('upload success : )')
+            return;
+          }
+          yield put({ type: 'updateUploadLogoProgress', payload: { progress } });
+        }
+      } catch (error) {
+        onError(error.message)
+      }
+    },
+
     *editMedia({ payload, onSuccess, onError }, { call, put, select }) {
       try {
         const key = yield select(state => state.media.selectedMedia.key)
@@ -78,6 +103,7 @@ export default {
         onError(error.message)
       }
     },
+
     *delMedia({ payload, onSuccess, onError }, { call }) {
       const { key } = payload
       try {
@@ -87,12 +113,14 @@ export default {
         onError(error.message)
       }
     },
+
     *getSelectedMedia({ payload }, { put, select }) {
       const { key } = payload
       const medias = yield select(state => state.media.list)
       const media = medias.find(m => m.key === key)
       yield put({ type: 'saveSelectedMedia', media })
     },
+
     *convert({ payload }, { put }) {
       const list = []
       payload.mediaObj.forEach((snapshort) => {
@@ -101,6 +129,7 @@ export default {
       yield put({ type: 'saveMedias', list })
     }
   },
+
   subscriptions: {
     onMediaChange({ history, dispatch }) {
       let mediaRef

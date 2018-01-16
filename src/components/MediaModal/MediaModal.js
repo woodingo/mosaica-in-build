@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal } from 'antd'
+import { Modal, Upload } from 'antd'
 
 import MediaForm from '../MediaForm';
 
@@ -10,6 +10,7 @@ const MediaModal = ({
   initMedia,
   onCreate,
   onEdit,
+  onLogoUpload,
   onHideModal,
   form,
   loading,
@@ -58,6 +59,9 @@ const MediaModal = ({
       cancelText={messages.cancel}
     >
       <MediaForm form={form} initMedia={initMedia} />
+      <Upload onChange={e => onLogoUpload(e.file.originFileObj)}>
+        Выбрать файл
+      </Upload>
     </Modal>
   )
 

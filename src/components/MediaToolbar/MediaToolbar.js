@@ -14,6 +14,7 @@ const MediaToolbar = ({
   onHideModal,
   onCreate,
   onEdit,
+  onLogoUpload,
   form,
   loading,
   messages
@@ -28,6 +29,7 @@ const MediaToolbar = ({
     modalVisible,
     onCreate,
     onEdit,
+    onLogoUpload,
     onHideModal,
     form,
     loading

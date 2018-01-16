@@ -1,4 +1,6 @@
-import firebaseApp from '../utils/firebase'
+import shortid from 'shortid';
+import { eventChannel, END } from 'redux-saga';
+import firebaseApp from '../utils/firebase';
 
 export const getMedias = () => {
   const mediaListRef = firebaseApp.database().ref('media')
@@ -13,6 +15,30 @@ export const delMedia = (key) => {
 export const addMedia = (media) => {
   const mediaRef = firebaseApp.database().ref('media').push()
   return mediaRef.set(media)
+}
+
+export const createUploadLogoChannel = (logo) => {
+  return eventChannel((emitter) => {
+    const storageRef = firebaseApp.storage().ref();
+    const logosRef = storageRef.child(`logos/${shortid()}`)
+    const logoLoader = logosRef.put(logo);
+    logoLoader.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        emitter({ progress })
+      },
+      (error) => {
+        emitter({ error });
+        emitter(END);
+      },
+      () => {
+        emitter({ success: true });
+        emitter(END);
+      }
+    );
+    return () => emitter(END);
+  })
 }
 
 export const updateMedia = (media) => {
