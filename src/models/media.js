@@ -51,11 +51,16 @@ export default {
         modalVisible: false,
         selectedMedia: undefined
       }
+    },
+    updateUploadLogoProgress(state, action) {
+      return {
+          ...state,
+        uploadLogoProgress: action.payload.progress
+      }
     }
   },
 
   effects: {
-
     *addMedia({ payload, onSuccess, onError }, { call, put }) {
       const { media } = payload
       try {
@@ -82,7 +87,7 @@ export default {
             onSuccess('upload success : )')
             return;
           }
-          yield put({ type: 'updateUploadLogoProgress', payload: { progress } });
+          yield put({ type: 'updateUploadLogoProgress', payload: { progress } })
         }
       } catch (error) {
         onError(error.message)

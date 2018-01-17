@@ -18,6 +18,7 @@ class Media extends React.Component {
   get mediaToolbarProps() {
     return {
       mode: this.props.media.mode,
+      uploadLogoProgress: this.props.media.uploadLogoProgress,
       initMedia: this.props.media.selectedMedia,
       modalVisible: this.props.media.modalVisible,
       loading: this.props.loading,

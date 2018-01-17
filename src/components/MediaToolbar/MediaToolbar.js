@@ -17,6 +17,7 @@ const MediaToolbar = ({
   onLogoUpload,
   form,
   loading,
+  uploadLogoProgress,
   messages
 }) => {
   const handleShowAddModal = () => {
@@ -32,7 +33,8 @@ const MediaToolbar = ({
     onLogoUpload,
     onHideModal,
     form,
-    loading
+    loading,
+    uploadLogoProgress
   }
   return (
     <div className={styles.normal}>

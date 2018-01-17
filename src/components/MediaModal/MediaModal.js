@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Upload } from 'antd'
+import { Modal, Icon, Progress } from 'antd'
 
 import MediaForm from '../MediaForm';
 
@@ -14,6 +14,7 @@ const MediaModal = ({
   onHideModal,
   form,
   loading,
+  uploadLogoProgress,
   messages
 }) => {
   const switchMode = (m) => {
@@ -59,7 +60,18 @@ const MediaModal = ({
       cancelText={messages.cancel}
     >
       <MediaForm form={form} initMedia={initMedia} />
-      <input type="file" onChange={e => onLogoUpload(e.target.files[0])} />
+      <input
+        type="file"
+        id="logo-upload"
+        style={{ display: 'none' }}
+        onChange={e => onLogoUpload(e.target.files[0])}
+      />
+      <label htmlFor="logo-upload">
+        <Icon type="picture" />
+      </label>
+      <div>
+        <Progress type="circle" percent={uploadLogoProgress ? +uploadLogoProgress.toFixed(0) : 0} />
+      </div>
     </Modal>
   )
 

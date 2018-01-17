@@ -37,7 +37,7 @@ export const createUploadLogoChannel = (logo) => {
         emitter(END);
       }
     );
-    return () => emitter(END);
+    return () => {};
   })
 }
 
