@@ -8,6 +8,7 @@ import styles from './MediaToolbar.less';
 
 const MediaToolbar = ({
   mode,
+  logoUrl,
   initMedia,
   modalVisible,
   onShowAddModal,
@@ -26,6 +27,7 @@ const MediaToolbar = ({
 
   const modelProps = {
     mode,
+    logoUrl,
     initMedia,
     modalVisible,
     onCreate,
@@ -63,4 +65,21 @@ MediaToolbar.defaultProps = {
   }
 }
 
-export default Form.create()(MediaToolbar)
+export default Form.create({
+  onFieldsChange(props, changedFields) {
+    props.onChange(changedFields);
+  },
+  mapPropsToFields(props) {
+    return {
+      url: Form.createFormField({
+        value: props.logoUrl
+      }),
+      name: Form.createFormField({
+        ...props.currentMedia.name
+      }),
+      description: Form.createFormField({
+        ...props.currentMedia.description
+      })
+    };
+  }
+})(MediaToolbar)

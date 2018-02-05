@@ -47,6 +47,11 @@ const MediaForm = ({
           initialValue: initMedia ? initMedia.description : ''
         })(<Input.TextArea rows={3} />)}
       </FormItem>
+      <FormItem style={{ display: 'none' }}>
+        {getFieldDecorator('url', {
+          initialValue: initMedia ? initMedia.url : ''
+        })(<Input />)}
+      </FormItem>
     </Form>
   )
 }

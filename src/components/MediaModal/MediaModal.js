@@ -6,6 +6,7 @@ import MediaForm from '../MediaForm';
 
 const MediaModal = ({
   mode,
+  logoUrl,
   modalVisible,
   initMedia,
   onCreate,
@@ -59,7 +60,7 @@ const MediaModal = ({
       okText={messages.ok}
       cancelText={messages.cancel}
     >
-      <MediaForm form={form} initMedia={initMedia} />
+      <MediaForm form={form} initMedia={initMedia} url={logoUrl} />
       <input
         type="file"
         id="logo-upload"

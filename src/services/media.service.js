@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import { get } from 'lodash';
 import { eventChannel, END } from 'redux-saga';
 import firebaseApp from '../utils/firebase';
 
@@ -26,7 +27,10 @@ export const createUploadLogoChannel = (logo) => {
       'state_changed',
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        emitter({ progress })
+        emitter({
+          progress,
+          logoUrl: get(snapshot, 'metadata.downloadURLs[0]')
+        })
       },
       (error) => {
         emitter({ error });

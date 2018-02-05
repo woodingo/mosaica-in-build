@@ -18,6 +18,7 @@ class Media extends React.Component {
   get mediaToolbarProps() {
     return {
       mode: this.props.media.mode,
+      logoUrl: this.props.media.logoUrl,
       uploadLogoProgress: this.props.media.uploadLogoProgress,
       initMedia: this.props.media.selectedMedia,
       modalVisible: this.props.media.modalVisible,
@@ -26,7 +27,9 @@ class Media extends React.Component {
       onHideModal: this.props.onHideModal,
       onCreate: this.props.onCreate,
       onEdit: this.props.onEdit,
-      onLogoUpload: this.props.onLogoUpload
+      onChange: this.props.onChange,
+      onLogoUpload: this.props.onLogoUpload,
+      currentMedia: this.props.media.currentMedia
     }
   }
 
@@ -73,14 +76,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onSelectedChange: keys => dispatch({ type: 'media/onSelectedChange', selectedKeys: keys }),
   onShowAddModal: () => dispatch({ type: 'media/showAddModal' }),
+  onChange: field => dispatch({ type: 'media/onChange', payload: field }),
   onShowEditModal: (key) => {
     dispatch({ type: 'media/getSelectedMedia', payload: { key } })
     dispatch({ type: 'media/showEditModal' })
   },
   onHideModal: () => dispatch({ type: 'media/hideModal' }),
-  onCreate: value => dispatch({
+  onCreate: values => dispatch({
     type: 'media/addMedia',
-    payload: { media: value },
+    payload: { media: { ...values } },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),
@@ -90,9 +94,9 @@ const mapDispatchToProps = dispatch => ({
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),
-  onEdit: value => dispatch({
+  onEdit: values => dispatch({
     type: 'media/editMedia',
-    payload: { media: value },
+    payload: { media: { ...values } },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),

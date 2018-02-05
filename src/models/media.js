@@ -9,7 +9,13 @@ export default {
     mode: '',
     selectedMedia: undefined,
     selectedKeys: [],
-    modalVisible: false
+    modalVisible: false,
+    logoUrl: '',
+    currentMedia: {
+      name: '',
+      description: '',
+      logoUrl: ''
+    }
   },
   reducers: {
     saveMedias(state, action) {
@@ -28,6 +34,15 @@ export default {
       return {
         ...state,
         selectedKeys: action.selectedKeys
+      }
+    },
+    onChange(state, action) {
+      return {
+        ...state,
+        currentMedia: {
+          ...state.currentMedia,
+          ...action.payload
+        }
       }
     },
     showAddModal(state) {
@@ -54,8 +69,9 @@ export default {
     },
     updateUploadLogoProgress(state, action) {
       return {
-          ...state,
-        uploadLogoProgress: action.payload.progress
+        ...state,
+        uploadLogoProgress: action.payload.progress,
+        logoUrl: action.payload.logoUrl
       }
     }
   },
@@ -78,7 +94,12 @@ export default {
       try {
         const channel = yield call(createUploadLogoChannel, logo);
         while (true) {
-          const { progress = 0, error, success } = yield take(channel);
+          const {
+            progress = 0,
+            error,
+            success,
+            logoUrl
+          } = yield take(channel);
           if (error) {
             onError(error.message)
             return;
@@ -87,7 +108,7 @@ export default {
             onSuccess('upload success : )')
             return;
           }
-          yield put({ type: 'updateUploadLogoProgress', payload: { progress } })
+          yield put({ type: 'updateUploadLogoProgress', payload: { progress, logoUrl } })
         }
       } catch (error) {
         onError(error.message)
